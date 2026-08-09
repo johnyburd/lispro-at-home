@@ -1,0 +1,3 @@
+[submodule "PhaffiiNet"]
+	path = PhaffiiNet
+	url = git@github.com:Change-Bio/PhaffiiNet.git
