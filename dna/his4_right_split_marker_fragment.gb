@@ -1,0 +1,59 @@
+LOCUS       his4_right              1981 bp    DNA     linear   UNK 01-JAN-1980
+DEFINITION  HIS4 right split-marker fragment (delta-his4 donor).
+ACCESSION   his4_right_split_marker
+VERSION     his4_right_split_marker
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    1..494
+                     /label="Overlap between fragments"
+     promoter        1..104
+                     /label="ILV5 promoter (partial)"
+     promoter        105..168
+                     /label="EM72 synthetic promoter"
+     CDS             170..742
+                     /label="NATr"
+     terminator      750..947
+                     /label="TEF terminator"
+     protein_bind    complement(948..981)
+                     /label="lox66"
+     source          982..1981
+                     /label="HIS4 downstream homology arm"
+ORIGIN
+        1 ctcgaaaccg cgacttcaaa cgccaatatg atgtgcggca cacaataagc gttcatatcc
+       61 gctgggtgac tttctcgctt taaaaaatta tccgaaaaaa ttttctagag tgttgttact
+      121 ttatacttcc ggctcgtata atacgacaag gtgtaaggag gactaaacca tgggtactac
+      181 cttagatgat acagcctaca gatacagaac atcagtccct ggtgatgctg aagcaattga
+      241 ggctttagac ggttcattca ccaccgacac cgtctttaga gtaaccgcca ccggtgatgg
+      301 atttacctta agagaagtcc cagtcgaccc tccattaact aaagtctttc cagatgatga
+      361 atctgatgac gaaagcgacg acggagaaga tggtgaccca gattcaagaa ctttcgtagc
+      421 atacggtgat gacggtgatt tggctggttt tgtagtcgtt tcttattcag gttggaatag
+      481 aaggttgacc gttgaagata tagaagtcgc cccagagcat agaggtcatg gtgtaggaag
+      541 agctttgatg ggtttggcta cagaatttgc aagagagaga ggagccggtc atttatggtt
+      601 agaagttact aatgttaacg cccctgctat ccatgcttat agaagaatgg gtttcacatt
+      661 atgtggttta gatactgctt tatatgatgg aacagcatct gacggtgaac aggccttgta
+      721 tatgtctatg ccttgccctt aagccggtaa ctgacaataa aaagattctt gttttcaaga
+      781 acttgtcatt tgtatagttt ttttatattg tagttgttct attttaatca aatgttagcg
+      841 tgatttatat tttttttcgc ctcgacatca tctgcccaga tgcgaagtta agtgcgcaga
+      901 aagtaatatc atgcgtcaat cgtatgtgaa tgctggtcgc tatactgata acttcgtata
+      961 gcatacatta tacgaacggt attatttaga gattttaact tacatttaga ttcgatagat
+     1021 ctaaccggca tctaacatcc agtgtttcta atctagtgaa tcgagatcaa gtctcactct
+     1081 gaacataata aataaggtct aaccccatgg aattacatgt ccccttgggt tctgagattg
+     1141 tcttacccgg tggggaaaga gccatactca agttcgtagg aaatgtggag tcaaagtctg
+     1201 ggatttttgc tggtgttgaa ctgattggtc aaatgagtgg aaaaggaaag aattctggag
+     1261 agtttaagaa cgtgcagtac tttaccacca aagtccctaa ttcaggcata tttttgccct
+     1321 atcaaagact tctggagaca agtaacatgc aacgacttca agcagagaca ccaacgaaga
+     1381 caaaacgaaa tgtttatgta tctcgctcac cattagctgt ttccaatcaa caagggttga
+     1441 aacgatcatc aaaggagagt agcccgagca ctgttgcagg caatgaagga caattgcaca
+     1501 gtttgaagac tgaaaatacc catctttcac agaaatgttt gaagttagaa acacagttac
+     1561 aagagtgcac ggaagttctc gagtctatgg agaaggtcat taaagaccat tacgaaccag
+     1621 ccttcaacca aatggagaaa gatttgtctg agaagaatga aaaaatttcc aagctaaagg
+     1681 tttcattcga cgaacagaag accgaactgc tggatattat tgattccctt gaaaaacaag
+     1741 cgtcagaaac tgaacagctc tacactaaag aattgaaaag gttgagggag gaatgtgctg
+     1801 cttataaaaa caaggatact gcaaaggaaa cgaacgaact ccaacgtcag ctgaaagtca
+     1861 aggaaaaaat gtgtcaagat tgggagttga aatatactca acttaaggat tcaaaaagta
+     1921 aagaggaaaa cgatataatt caaggatacc agcgtgaaat cgatgatttg aaagcaaaat
+     1981 t
+//
