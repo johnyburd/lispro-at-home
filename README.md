@@ -110,15 +110,16 @@ Each custom locus will require 3 custom primers to be ordered: 2 for the arm syn
 ### 2. Test YPS1 Arms
 ![rfp](assets/IRV_YPS1_KanR_RFP.png)
 
-| slot  | part                     | source           |
-| ----- | ------------------------ | ---------------- |
-| s5→s1 | `pOYC39s1s5-GFP-DO`      | "                |
-| s1→s2 | `yps1_5hr_s1s2`          | PCR from PN gDNA |
-| s2→s3 | `S2S3_Sc_selection_KanR` | OYC B12          |
-| s3→A  | `S3A_ACL_start`          | OYC A5           |
-| A→F   | `AF_RFP_Dropout`         | "                |
-| F→s4  | `FS4_ACR_end`            | OYC G9           |
-| s4→s5 | `yps1_3hr_s4s5`          | PCR from PN gDNA |
+| slot  | part                     | source           | plasmid | released piece |
+| ----- | ------------------------ | ---------------- | ------- | -------------- |
+| s5→s1 | `pOYC39s1s5-GFP-DO`      | backbone         | 3367 bp | 2516 bp        |
+| s1→s2 | `yps1_5hr_s1s2`          | PCR from PN gDNA | 635 bp  | 604 bp         |
+| s2→s3 | `S2S3_Sc_selection_KanR` | OYC B12          | 3883 bp | 1764 bp        |
+| s3→A  | `S3A_ACL_start`          | OYC A5           | 2318 bp | 195 bp         |
+| A→F   | `AF_RFP_Dropout`         | pTiR             | 5484 bp | 886 bp         |
+| F→s4  | `FS4_ACR_end`            | OYC G9           | 2311 bp | 174 bp         |
+| s4→s5 | `yps1_3hr_s4s5`          | PCR from PN gDNA | 635 bp  | 604 bp         |
+| —     | **product**              |                  | **6743 bp** | **4227 bp** |
 
 
 ##### Process
@@ -138,13 +139,20 @@ Each custom locus will require 3 custom primers to be ordered: 2 for the arm syn
 ![lisprohl18](assets/IRV_YPS1_KanR_lisprohl18.png)
 
 
-| slot | part             | source       |
-| ---- | ---------------- | ------------ |
-| s3→A | `S3A_ACL_start`  | OYC A5       |
-| A→C  | `ab_kp_pgap_ac`  | OYC E2 + PCR |
-| C→E  | `lispro_hl18_ce` | custom       |
-| E→F  | `EF_Sc_tSSA1`    | OYC H8       |
-| F→s4 | `FS4_ACR_end`    | OYC G9       |
+| slot  | part                     | source           | plasmid | released piece |
+| ----- | ------------------------ | ---------------- | ------- | -------------- |
+| s5→s1 | `pOYC39s1s5-GFP-DO`      | backbone         | 3367 bp | 2516 bp        |
+| s1→s2 | `yps1_5hr_s1s2`          | PCR from PN gDNA | 635 bp  | 604 bp         |
+| s2→s3 | `S2S3_Sc_selection_KanR` | OYC B12          | 3883 bp | 1764 bp        |
+| s3→A  | `S3A_ACL_start`          | OYC A5           | 2318 bp | 195 bp         |
+| A→C   | `ab_kp_pgap_ac`          | OYC E2 + PCR     | 508 bp  | 481 bp         |
+| C→E   | `lispro_hl18_ce`         | custom           | 550 bp  | 523 bp         |
+| E→F   | `EF_Sc_tSSA1`            | OYC H8           | 2354 bp | 228 bp         |
+| F→s4  | `FS4_ACR_end`            | OYC G9           | 2311 bp | 174 bp         |
+| s4→s5 | `yps1_3hr_s4s5`          | PCR from PN gDNA | 635 bp  | 604 bp         |
+| —     | **product**              |                  | **7089 bp** | **4573 bp** |
+
+The A→C part will not come fram the plasmid
 
 I think I can't use the BbsI dropout reaction because the RFP TU contains internal BbsI sites, but maybe there's a more convenient RFP part available. If not, the lispro test IRV can be assembled from scratch in another BsaI reaction.
 Plan to order `lispro_hl18_ce` in a bug. can dial out with PCR or maybe use BsaI
