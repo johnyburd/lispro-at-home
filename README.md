@@ -19,33 +19,31 @@
 * [Yield improvement of heterologous peptides expressed in _yps1_-disrupted _Saccharomyces cerevisiae_ strains](https://www.sciencedirect.com/science/article/abs/pii/S0141022900001587)
 * [Gleeson et al. 1998](https://www.researchgate.net/publication/13603766_Generation_of_Protease-Deficient_Strains_and_Their_Use_in_Heterologous_Protein_Expression)
 
-# Homology Arms
-1. Follow the 1st protocol [^MIMB1] to prep the gDNA. It looks like it will be suitable for the homology arms because the authors were able to PCR amplify a 4394 bp segment which is much larger than the planned homology arms.
-2. Use synthesized primers to amplify homology arms targeting the genes in [[#Loci]] with the syntax referenced in [[#Assembly]].
-
-##### References
-[^MIMB1]: [Isolation of _Pichia pastoris_ Genomic DNA for Long-Read DNA Sequencing and PCR Applications](https://doi.org/10.1007/978-1-0716-4779-0_3)
-##### Materials
-* [Lumiprobe DNA Purification Columns](https://www.lumiprobe.com/p/nap-10-dna-purification-columns)
 
 
 # CDS
 
-## AA Sequence
+## AA Precursor Sequence
 
-
-this structure is mostly based on kjeldsen but currently it's lacking some major improvements around folding, secretion, and purification.
-
-| Segment                       | Length | Sequence                                                           | Notes                                             |
-| ----------------------------- | ------ | ------------------------------------------------------------------ | ------------------------------------------------- |
-| α-factor pre (signal peptide) | 19     | `MRFPSIFTAVLFAASSALA`                                              | signal peptidase cuts in the ER                   |
-| α-factor pro region           | 64     | `APVSTTTEDETAQIPVEAVIGYLDLEGDFDVAVLPFSNSTNNGLLFINTTIASIAAKEEGVSLD` |                                                   |
-| Kex2 site                     | 2      | `KR`                                                               | Kex2 cleaves α-factor off in the Golgi            |
-| B chain                       | 30     | `FVNQHLCGSHLVEALYLVCGERGFFYTKPT`                                   | Lispro swap from human insulin                    |
-| Linker / conversion handle    | 3      | `AAK`                                                              | Trypsin cuts this out in-vitro. possibly optional |
-| A chain                       | 21     | `GIVEQCCTSICSLYQLENYCN`                                            |                                                   |
-|                               |        |                                                                    |                                                   |
-
+| segment                | indices | length | sequence                                                           |
+| ---------------------- | ------- | ------ | ------------------------------------------------------------------ |
+| α-factor pre           | 1-19    | 19     | `MRFPSIFTAVLFAASSALA`                                              |
+| α-factor pro           | 20-83   | 64     | `APVNTTTEDETAQIPAEAVIGYSDLEGDFDVAVLPFSNSTNNGLLFINTTIASIAAKEEGVSLE` |
+| Kex2 site              | 84-85   | 2      | `KR`                                                               |
+| lispro B chain B1-B30  | 86-115  | 30     | `FVNQHLCGSHLVEALYLVCGERGFFYTKPT`                                   |
+| Kex2 site              | 116-117 | 2      | `KR`                                                               |
+| HL18 + 6xHis           | 118-147 | 30     | `SVEDEDGDDEYATEETLSHHHHHHGDDDDK`                                   |
+| spacer                 | 148-150 | 3      | `GAA`                                                              |
+| Kex2                   | 151-152 | 2      | `KR`                                                               |
+| insulin A chain A1-A21 | 153-173 | 21     | `GIVEQCCTSICSLYQLENYCN`                                            |
+| stop                   | 174     |        | `TAA`                                                              |
+##### Processing
+1. signal peptidase cuts pre in ER
+2. Kex2 cuts first two `KR` sites in the golgi
+3. A+HL18 and B+`KR` chains form disulfide bonds
+4. Molecule is secreted
+5. Purification
+6. HL18 is removed with Kex2 in vitro. B chain retains `KR`
 
 
 ![insulin](assets/insulin-sequence.png)
@@ -63,43 +61,105 @@ this structure is mostly based on kjeldsen but currently it's lacking some major
 | GAPp  | - Constitutive promoter, can be tested in the shake flask<br>- Seems like it would be easier for testing, worse for production |
 
 
+# Purification
+
+#### Gel & Dye
+* Spin to clear the both
+* concentrate and/or use TCA and/or acetone to precipitate the proteins
+* run a gel specialized for small molecules with coomassie dye
+* compare to ladder and off the shelf insulin and wild type on supernatant
+
+#### Imac
+
+
+
+##### References
+[^Kim]: [Functional expression of recombinant insulins in Saccharomyces cerevisiae](https://link.springer.com/content/pdf/10.1186/s12934-024-02571-2.pdf)
+
+##### Materials
+
 # Assembly
 ![787](https://experiment-uploads.s3.amazonaws.com/1244205/1roZSgScS0W34uWJMVW0_F1-OYC-Schema-EduKit.svg)
-
 
 ##### References
 * https://experiment.com/u/HXePMQ
 
+
 # Roadmap
 
-1. Choose one or more protease [[#Loci|loci]] to knock out. Current top choice: YPS1
-2. Design primers to amplify the homology arms and add an overhang compatible with the OYC golden gate assembly syntax
-	1. Order the HA primers
-	2. extract dna from yeast
-	3. run PCR
-	4. gel or column purification to get the HA
-3. Design & order primers that overlap the integration site to validate where the integration occurred.
-	1. Can reuse 2 primers from the previous step. needs 2 additional
-4. Obtain the KanR s2-s3 part
-	1. I think this has to be synthesized rather than trying to figure out how to get lox sites on the OYC parts
-	2. can get it delivered in a bug I think
-	3. Use lox66/71 sites, not loxP since that could have a chance of interacting with the existing lox scar
-5. Order the codon-optimized CDS for lispro with overhang compatible with the OYC golden gate assembly syntax
-	1. The current CDS in benchling likely has some problems
-		1. the trypsin linker
-		2. some extra bases after the overhang
-6. Golden Gate everything together
-	1. Quantify parts
-7. Transform into ecoli to make copies
-8. linearize and transform into yeast
-	1. use PCR with high fidelity polymerase
-		1. avoids lots of junk DNA
-		2. avoids compromising HA to find convenient restriction sites
-9. Select on Kanamycin plates
-10. See if we can detect any insulin
-	1. ELISA with anti-insulin AB
-11. Remove the KanR gene
-	1. Build a episomal cre expression plasmid (`BBF10K_000207` ?)
-		1. Select using Zeocin
-	2. Optionally: try using electrophoresis to directly introduce cre instead
-12. Testing and purification
+### 1. Amplify Custom Homology Arms
+Only planning to create arms for YPS1 to start. We can still use the AOX parts from the OYC. 
+Each custom locus will require 3 custom primers to be ordered: 2 for the arm synthesis + syntax overhangs and 1 additional one further along the genome to verify integration. YPS1: 3, Aox: 1. 4 primers needed.
+
+##### Process
+1. Follow the 1st protocol [^MIMB1] to prep the gDNA. It looks like it will be suitable for the homology arms because the authors were able to PCR amplify a 4394 bp segment which is much larger than the planned homology arms.
+2. Use synthesized primers to amplify homology arms targeting the genes in [[#Loci]] with the syntax referenced in [[#Assembly]].
+	1. 600 bp on each arm
+	2. 5' `FN392322.1:1158169-1158768`
+	3. 3' `FN392322.1:1160569-1161168`
+3. Gel/column purification
+
+
+##### References
+[^MIMB1]: [Isolation of _Pichia pastoris_ Genomic DNA for Long-Read DNA Sequencing and PCR Applications](https://doi.org/10.1007/978-1-0716-4779-0_3)
+
+##### Materials
+* [Lumiprobe DNA Purification Columns](https://www.lumiprobe.com/p/nap-10-dna-purification-columns)
+
+
+### 2. Test YPS1 Arms
+![rfp](assets/IRV_YPS1_KanR_RFP.png)
+
+| slot  | part                     | source           |
+| ----- | ------------------------ | ---------------- |
+| s5→s1 | `pOYC39s1s5-GFP-DO`      | "                |
+| s1→s2 | `yps1_5hr_s1s2`          | PCR from PN gDNA |
+| s2→s3 | `S2S3_Sc_selection_KanR` | OYC B12          |
+| s3→A  | `S3A_ACL_start`          | OYC A5           |
+| A→F   | `AF_RFP_Dropout`         | "                |
+| F→s4  | `FS4_ACR_end`            | OYC G9           |
+| s4→s5 | `yps1_3hr_s4s5`          | PCR from PN gDNA |
+
+
+##### Process
+1. grow up & miniprep parts in bugs
+	1. select using cat
+2. quant parts & perform BsaI reaction
+3. store in bug again for storage/save point
+	1. GFP marker should disappear with the dropout replaced
+4. miniprep, use primers and high fidelity polymerase to dial out the linear integrative sequence. use 2 primers from step 1
+5. perform HR
+	1. validate with primers from step 1
+	2. select with kanamycin
+	3. look for RFP
+
+### 3. Test lispro part
+
+![lisprohl18](assets/IRV_YPS1_KanR_lisprohl18.png)
+
+
+| slot | part             | source       |
+| ---- | ---------------- | ------------ |
+| s3→A | `S3A_ACL_start`  | OYC A5       |
+| A→C  | `ab_kp_pgap_ac`  | OYC E2 + PCR |
+| C→E  | `lispro_hl18_ce` | custom       |
+| E→F  | `EF_Sc_tSSA1`    | OYC H8       |
+| F→s4 | `FS4_ACR_end`    | OYC G9       |
+
+I think I can't use the BbsI dropout reaction because the RFP TU contains internal BbsI sites, but maybe there's a more convenient RFP part available. If not, the lispro test IRV can be assembled from scratch in another BsaI reaction.
+Plan to order `lispro_hl18_ce` in a bug. can dial out with PCR or maybe use BsaI
+
+The two KP promoters will need to be re-leveled since they are currently A-B parts and we need A-C. This will require 2 primers each.
+6 additional primers.
+
+##### Verification
+* Sanger the IRV
+* do as many of the purification and detection steps as it takes to prove something went wrong
+### 4. Experiment with promoters and loci
+Rinse and repeat with every combination of pGAP, pAOX, YPS1 arms, AOX arms, mismatched arms
+
+### 5. Rebuild with floxable kanr part
+
+Eventually we'll want to remove the KanR so there's no problems with producing a therapeutic. I think it's possible to add lox sites to the stock OYC part with PCR as well but I don't fully understand how.
+### 6. Scale
+Assuming all goes to plan, build a bioreactor and figure out how to produce and purify at scale :).
